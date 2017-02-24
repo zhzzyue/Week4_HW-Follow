@@ -10,8 +10,8 @@ void ofApp::setup(){
 	ofSetVerticalSync(true);
 
 	// set background: 
-	ofEnableAlphaBlending();
-	ofBackground(30,30,30,10);
+//	ofEnableAlphaBlending();
+	ofBackground(255);
 
 	// set the position of the rectangle:
 	myRectangle.pos.x = 100;
@@ -25,11 +25,16 @@ void ofApp::setup(){
     
     // set Fbo
     
-    fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA32F);  // higher precision alpha (no artifacts)
+    fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);  // higher precision alpha (no artifacts)
     
     fbo.begin();
     ofClear(255,255,255, 0);
     fbo.end();
+    
+//    fbo.begin();
+//    ofSetColor(255, 255, 255, 50);
+//    ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
+//    fbo.end();
 }
 
 //--------------------------------------------------------------
@@ -42,24 +47,32 @@ void ofApp::update(){
     
     int mouseX = 0;
     int mouseY = 0;
-}
+    
 
+}
 //--------------------------------------------------------------
 void ofApp::draw(){
 
     
+    fbo.begin();
+    ofSetColor(255, 255, 255, 20);
+    ofDrawRectangle(0, 0, ofGetWidth(), ofGetHeight());
     
+
 	myRectangle.draw();
     
     myOrangeTriangle.draw();
     
     myRedcircle.draw();
     
+    fbo.end();
     
-    fbo.begin();
-    ofSetColor(0,0,0, 10); // black with alpha
-    ofDrawRectangle(0, 0, 10, 10);
-    ofSetColor(0,0,255);
+    fbo.draw(0,0);
+//    fbo.begin();
+//    ofSetColor(0,0,0, 10); // black with alpha
+//    ofDrawRectangle(0, 0, 10, 10);
+//    ofSetColor(0,0,255);
+ 
     
 
 }

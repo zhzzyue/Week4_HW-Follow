@@ -14,7 +14,7 @@ void redCircle::draw(){
 }
 
 void redCircle::zenoToPoint(float catchX, float catchY){
-    if(ofDist(pos.x, pos.y, catchX, catchY)<50){
+    if(ofDist(pos.x, pos.y, catchX, catchY)<60){
         pos.x = pos.x + catchUpSpeed * (catchX-pos.x);
         pos.y = pos.y + catchUpSpeed * (catchY-pos.y);
     }else{
